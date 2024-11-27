@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Sports Game Suggestion</title>
+    
+    <style>
+        /* General styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #6e7f80, #8a9a5b);
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+    
+        .container {
+            width: 60%;
+            margin: 50px auto;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            transition: all 0.3s ease-in-out;
+        }
+    
+        .container:hover {
+            transform: scale(1.02);
+        }
+    
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+    
+        .form-group {
+            margin-bottom: 25px;
+            transition: transform 0.2s ease;
+        }
+    
+        label {
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+            display: block;
+        }
+    
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 14px;
+            margin-top: 8px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            color: #333;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+    
+        input[type="text"]:focus, input[type="number"]:focus, select:focus {
+            border-color: #4CAF50;
+            background-color: #f1f8f3;
+            outline: none;
+        }
+    
+        button {
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            width: 100%;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+    
+        button:hover {
+            background-color: #45a049;
+        }
+    
+        .result {
+            margin-top: 30px;
+            padding: 25px;
+            background-color: #fff;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+    
+        .result h2 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+    
+        .result p {
+            font-size: 18px;
+            color: #555;
+        }
+    
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 25px;
+            }
+    
+            h1 {
+                font-size: 24px;
+            }
+    
+            button {
+                font-size: 16px;
+            }
+    
+            .form-group {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+    
+    
+    <!-- <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 60%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .result h2 {
+            font-size: 20px;
+            color: #333;
+        }
+
+        .result p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            button {
+                font-size: 14px;
+            }
+        }
+    </style> -->
+</head>
+<body>
+    <div class="container">
+        <h1>BMI Sports Check</h1>
+
+        <form method="POST">
+            <label for="gender">Gender:</label>
+            <select name="gender" id="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select><br>
+
+            <label for="height">Height (cm):</label>
+            <input type="number" name="height" id="height" required><br>
+
+            <label for="weight">Weight (kg):</label>
+            <input type="number" name="weight" id="weight" required><br>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        {% if result %}
+            <div style="color: rgb(0, 0, 0);" class="result-box" {% if not is_match %} style="color: rgb(0, 0, 0);" {% endif %}>
+                {{ result }}
+            </div>
+        {% endif %}
+    </div>
+
+<!-- AI Sports Game Suggestion Section -->
+<div class="container">
+    <h1>AI Sports Game Suggestion</h1>
+    <form id="bmiForm">
+        <div class="form-group">
+            <label for="gender_game">Gender</label>
+            <input type="text" id="gender_game" name="gender" placeholder="Enter Gender (Male/Female)" required>
+        </div>
+        <div class="form-group">
+            <label for="height_game">Height (in cm)</label>
+            <input type="number" id="height_game" name="height" placeholder="Enter Height in cm" required>
+        </div>
+        <div class="form-group">
+            <label for="weight_game">Weight (in kg)</label>
+            <input type="number" id="weight_game" name="weight" placeholder="Enter Weight in kg" required>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="result" class="result">
+        <h2>AI Suggested Game:</h2>
+        <p id="gameSuggestion"></p>
+    </div>
+</div>
+
+<script>
+    // Function to suggest a game based on input
+    function suggestGame(gender, height, weight) {
+        if (gender.toLowerCase() === "male" && height > 170 && weight > 70) {
+            return "Football";
+        } else if (gender.toLowerCase() === "female" && height < 160 && weight < 60) {
+            return "Tennis";
+        } else if (height > 165 && weight > 70) {
+            return "Basketball";
+        } else if (height < 160 && weight > 55) {
+            return "Volleyball";
+        } else if (height == 0 && weight == 0) {
+            return "Error: Invalid input!";
+        } else {
+            return "Sorry, we suggest you try Soccer!";
+        }
+    }
+
+    document.getElementById("bmiForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        // Get form values
+        var gender = document.getElementById("gender_game").value;
+        var height = document.getElementById("height_game").value;
+        var weight = document.getElementById("weight_game").value;
+
+        // Suggest a game based on the logic
+        var game = suggestGame(gender, height, weight);
+
+        // Display the suggested game
+        document.getElementById("gameSuggestion").textContent = "We suggest you try " + game + "!";
+
+        // Show the result section
+        document.getElementById("result").style.display = "block";
+    });
+</script>
+
+</body>
+</html>

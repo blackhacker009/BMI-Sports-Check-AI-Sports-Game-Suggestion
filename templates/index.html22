@@ -1,0 +1,43 @@
+index.html<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Sports Check</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>BMI Sports Check</h1>
+
+        <!-- Form to input data -->
+        <form method="POST">
+            <label for="gender">Gender:</label>
+            <select name="gender" id="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select><br>
+
+            <label for="height">Height (cm):</label>
+            <input type="number" name="height" id="height" required><br>
+
+            <label for="weight">Weight (kg):</label>
+            <input type="number" name="weight" id="weight" required><br>
+
+            <input type="submit" value="Check">
+        </form>
+
+        <!-- Display result based on match -->
+        <div id="resultBox">
+            {% if result %}
+                <div class="{{ 'result-box' if is_match else 'error-box' }}">
+                    {{ result }}
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+</body>
+</html>
