@@ -3,5 +3,5 @@
 2.USE CMD 
 
 
-3 paste IN CMD :
+3. paste IN CMD :
 pip install flask
